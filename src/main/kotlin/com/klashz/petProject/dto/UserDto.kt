@@ -11,5 +11,5 @@ data class UserDto(
     val email : String,
     val phone : String,
     val password : String,
-    val rol : String,
+    val rol : String?,
 )
