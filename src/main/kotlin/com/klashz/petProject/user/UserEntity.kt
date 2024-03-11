@@ -1,8 +1,10 @@
 package com.klashz.petProject.user
 
+import com.klashz.petProject.pet.PetAnimalEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
+import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 import lombok.Getter
 import lombok.Setter
@@ -25,4 +27,6 @@ data class UserEntity(
     val password : String,
     @Column(name = "rol")
     val rol : String,
+    @OneToMany(mappedBy = "userEntity", orphanRemoval = true)
+    val petAnimalList: List<PetAnimalEntity>
 )

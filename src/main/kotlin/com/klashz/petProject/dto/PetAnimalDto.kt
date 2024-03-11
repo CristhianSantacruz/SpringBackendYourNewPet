@@ -8,6 +8,7 @@ import java.util.*
 data class PetAnimalDto(
     val id: UUID?,
     var name : String?,
+    val userId : String,
     var age: String?,
     var raze : String?,
     var size : Size?,

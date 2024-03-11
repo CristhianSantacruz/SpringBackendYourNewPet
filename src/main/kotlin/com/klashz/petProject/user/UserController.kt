@@ -1,5 +1,6 @@
 package com.klashz.petProject.user
 
+import com.klashz.petProject.dto.PetAnimalDto
 import com.klashz.petProject.dto.UserDto
 import com.klashz.petProject.user.interfaces.IUserService
 import org.springframework.http.HttpStatus
@@ -30,6 +31,10 @@ class UserController(private val iUserService: IUserService) {
     @GetMapping("/{email}")
     fun getUserByEmail(@PathVariable email: String): ResponseEntity<UserDto> {
         return ResponseEntity.of(iUserService.getUserByEmail(email))
+    }
+    @GetMapping("/pets/{dni}")
+    fun getPetsByUser(@PathVariable dni:String): ResponseEntity<List<PetAnimalDto>> {
+        return ResponseEntity.ok(iUserService.getPetsByUser(dni))
     }
 
     @PutMapping

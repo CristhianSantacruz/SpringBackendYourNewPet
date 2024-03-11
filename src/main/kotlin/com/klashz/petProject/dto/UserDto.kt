@@ -1,4 +1,5 @@
 package com.klashz.petProject.dto
+import com.klashz.petProject.pet.PetAnimalEntity
 import lombok.Getter
 import lombok.Setter
 
@@ -12,4 +13,5 @@ data class UserDto(
     val phone : String,
     val password : String,
     val rol : String?,
+    val petAnimalList : List<PetAnimalDto>?
 )

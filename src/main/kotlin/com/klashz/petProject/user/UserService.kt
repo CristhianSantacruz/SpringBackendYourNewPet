@@ -1,6 +1,8 @@
 package com.klashz.petProject.user
 
+import com.klashz.petProject.dto.PetAnimalDto
 import com.klashz.petProject.dto.UserDto
+import com.klashz.petProject.exceptions.UserNotFoundException
 import com.klashz.petProject.security.Roles
 import com.klashz.petProject.user.interfaces.IUserRepository
 import com.klashz.petProject.user.interfaces.IUserService
@@ -15,6 +17,16 @@ class UserService(private val iUserRepository: IUserRepository) :IUserService {
 
     override fun getUserByEmail(email: String): Optional<UserDto> {
         return iUserRepository.getUserByEmail(email);
+    }
+
+    override fun getPetsByUser(dni: String): List<PetAnimalDto>? {
+        val userDtoOptional: Optional<UserDto> = iUserRepository.getUserById(dni)
+        if (userDtoOptional.isPresent) {
+            val userDto: UserDto = userDtoOptional.get()
+            return userDto.petAnimalList ?: emptyList()
+        } else {
+            throw UserNotFoundException(dni)
+        }
     }
 
     override fun updateUser(userDto: UserDto): Optional<UserDto> {
