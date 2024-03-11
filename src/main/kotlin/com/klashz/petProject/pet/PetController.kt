@@ -2,11 +2,9 @@ package com.klashz.petProject.pet
 
 import com.klashz.petProject.dto.PetAnimalDto
 import com.klashz.petProject.pet.interfaces.IPetService
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
@@ -20,5 +18,17 @@ class PetController(private val iPetService: IPetService) {
   @GetMapping("/{id}")
   fun getById(@PathVariable id : UUID) : ResponseEntity<PetAnimalDto>{
       return ResponseEntity.of(iPetService.getPetById(id))
+  }
+  @PostMapping()
+  fun saveUser(@RequestBody petAnimalDto: PetAnimalDto) : ResponseEntity<PetAnimalDto>{
+      return ResponseEntity.status(HttpStatus.CREATED).body(iPetService.savePet(petAnimalDto))
+  }
+  @PutMapping()
+  fun updateUse(@RequestBody petAnimalDto: PetAnimalDto) : ResponseEntity<PetAnimalDto>{
+      return ResponseEntity.of(iPetService.updatePet(petAnimalDto))
+  }
+  @DeleteMapping("/delete/{id}")
+  fun deletePet(@PathVariable id : UUID) {
+      iPetService.deletePet(id)
   }
 }

@@ -9,7 +9,7 @@ import java.util.*
 data class PetAnimalEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    val id: UUID,
+    val id: UUID?,
     @Column(name = "nombre")
     val name : String,
     @Column(name = "edad")
