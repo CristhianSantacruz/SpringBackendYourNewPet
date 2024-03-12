@@ -1,5 +1,7 @@
 package com.klashz.petProject.user
 
+import com.klashz.petProject.adoption.AdoptionEntity
+import com.klashz.petProject.dto.AdoptionDto
 import com.klashz.petProject.pet.PetAnimalEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -28,5 +30,7 @@ data class UserEntity(
     @Column(name = "rol")
     val rol : String,
     @OneToMany(mappedBy = "userEntity", orphanRemoval = true)
-    val petAnimalList: List<PetAnimalEntity>
+    val petAnimalList: List<PetAnimalEntity>,
+    @OneToMany(mappedBy = "adoptedByUser", orphanRemoval = true)
+    val adoptedPets : List<AdoptionEntity>
 )
