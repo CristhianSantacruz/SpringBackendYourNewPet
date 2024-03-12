@@ -13,5 +13,6 @@ data class UserDto(
     val phone : String,
     val password : String,
     val rol : String?,
-    val petAnimalList : List<PetAnimalDto>?
+    val petAnimalListRegister : List<PetAnimalDto>?,
+    var adoptedPets: List<AdoptionDto>?,
 )

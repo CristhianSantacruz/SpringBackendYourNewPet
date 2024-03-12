@@ -17,8 +17,12 @@ interface IUserMapper {
     @Mapping(target = "rol", source = "rol")
     fun toUserDto(userEntity: UserEntity): UserDto
 
-    @InheritInverseConfiguration
-   // @Mapping(target = "petAnimalEntityList", ignore = true)
+    @Mapping(target = "dni", source = "dni")
+    @Mapping(target = "fullName", source = "fullName")
+    @Mapping(target = "email", source = "email")
+    @Mapping(target = "phone", source = "phone")
+    @Mapping(target = "password", source = "password")
+    @Mapping(target = "rol", source = "rol")
     fun toUserEntity(userDto: UserDto): UserEntity
 
     fun toUsersDtoList(userEntities: List<UserEntity>): List<UserDto>

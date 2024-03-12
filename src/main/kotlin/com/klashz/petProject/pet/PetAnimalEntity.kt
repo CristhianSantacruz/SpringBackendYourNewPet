@@ -1,4 +1,5 @@
 package com.klashz.petProject.pet
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.klashz.petProject.user.UserEntity
 import com.klashz.petProject.utils.Size
 import com.klashz.petProject.utils.Status
@@ -12,7 +13,7 @@ data class PetAnimalEntity(
     @GeneratedValue(strategy = GenerationType.UUID)
     val id: UUID?,
     @Column(name = "user_id")
-    val userId : String,
+    val userId : String?,
     @Column(name = "nombre")
     val name : String,
     @Column(name = "edad")
@@ -33,6 +34,7 @@ data class PetAnimalEntity(
     val imagePathUrl : String,
     @Column(name = "numero_contacto")
     val contactPet : String,
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     val userEntity: UserEntity?

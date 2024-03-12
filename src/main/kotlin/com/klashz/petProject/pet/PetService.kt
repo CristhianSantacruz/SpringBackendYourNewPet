@@ -18,6 +18,7 @@ class PetService(private val iPetRepository: IPetRepository) : IPetService{
     }
 
     override fun savePet(petAnimalDto: PetAnimalDto): PetAnimalDto {
+        petAnimalDto.status = Status.DISPONIBLE
         petAnimalDto.name = petAnimalDto.name ?: "DESCONOCIDO"
         petAnimalDto.age = petAnimalDto.age ?: "DESCONOCIDO"
         petAnimalDto.imagePathUrl = petAnimalDto.imagePathUrl ?: "NONE"

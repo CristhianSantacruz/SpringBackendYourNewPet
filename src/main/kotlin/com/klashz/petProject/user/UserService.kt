@@ -23,7 +23,7 @@ class UserService(private val iUserRepository: IUserRepository) :IUserService {
         val userDtoOptional: Optional<UserDto> = iUserRepository.getUserById(dni)
         if (userDtoOptional.isPresent) {
             val userDto: UserDto = userDtoOptional.get()
-            return userDto.petAnimalList ?: emptyList()
+            return userDto.petAnimalListRegister ?: emptyList()
         } else {
             throw UserNotFoundException(dni)
         }

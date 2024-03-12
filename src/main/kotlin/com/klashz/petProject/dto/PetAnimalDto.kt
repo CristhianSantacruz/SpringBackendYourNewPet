@@ -15,7 +15,7 @@ data class PetAnimalDto(
     var age: String?,
     var raze : String?,
     var size : Size?,
-    var status : Status = Status.DISPONIBLE,
+    var status : Status?,
     val description : String,
     var petType: String?,
     var imagePathUrl : String?,

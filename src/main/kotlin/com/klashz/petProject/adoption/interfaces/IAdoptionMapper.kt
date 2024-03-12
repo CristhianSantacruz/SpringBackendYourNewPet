@@ -14,7 +14,7 @@ interface IAdoptionMapper {
     @Mapping(target = "adoptionDate", source = "adoptionDate")
     fun toAdoptionDto(adoptionEntity: AdoptionEntity) : AdoptionDto
     @Mapping(target = "adoptedByUser", ignore = true)
-    @Mapping(target = "petAdopted", ignore = true)
+   // @Mapping(target = "petAdopted", ignore = true)
     @InheritInverseConfiguration
     fun toAdoptionEntity(adoptionDto: AdoptionDto) : AdoptionEntity
     fun toAdoptionDtoList(adoptionEntity:List< AdoptionEntity>) :List<AdoptionDto>

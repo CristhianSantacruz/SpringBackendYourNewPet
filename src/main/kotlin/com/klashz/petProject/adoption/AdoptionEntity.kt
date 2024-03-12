@@ -19,12 +19,12 @@ data class AdoptionEntity(
     val petId : UUID,
     @JoinColumn(name = "adoptedby_user_id", insertable = false, updatable = false)
     @ManyToOne
-    val adoptedByUser : UserEntity,
+    val adoptedByUser : UserEntity?,
     @JoinColumn(name = "adopted_pet_id", insertable = false, updatable = false)
     @ManyToOne
-    val petAdopted : PetAnimalEntity,
+    val petAdopted : PetAnimalEntity?,
     @Column(name = "fecha_adopcion")
-    val adoptionDate: LocalDateTime = LocalDateTime.now()
+    val adoptionDate: LocalDateTime?,
 
 ) {
 }

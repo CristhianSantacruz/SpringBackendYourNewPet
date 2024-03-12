@@ -30,7 +30,7 @@ data class UserEntity(
     @Column(name = "rol")
     val rol : String,
     @OneToMany(mappedBy = "userEntity", orphanRemoval = true)
-    val petAnimalList: List<PetAnimalEntity>,
+    val petAnimalListRegister: List<PetAnimalEntity>,
     @OneToMany(mappedBy = "adoptedByUser", orphanRemoval = true)
     val adoptedPets : List<AdoptionEntity>
 )
