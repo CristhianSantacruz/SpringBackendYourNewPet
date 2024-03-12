@@ -2,6 +2,7 @@ package com.klashz.petProject.user
 
 import com.klashz.petProject.dto.PetAnimalDto
 import com.klashz.petProject.dto.UserDto
+import com.klashz.petProject.dto.response.UserDtoResponse
 import com.klashz.petProject.exceptions.UserNotFoundException
 import com.klashz.petProject.security.Roles
 import com.klashz.petProject.user.interfaces.IUserRepository
@@ -41,8 +42,9 @@ class UserService(private val iUserRepository: IUserRepository) :IUserService {
        return iUserRepository.getAllUsers();
     }
 
-    override fun saveUser(userDto: UserDto): UserDto {
-        return iUserRepository.saveUser(userDto.copy(rol = Roles.USER))
+    override fun saveUser(userDto: UserDto): UserDtoResponse {
+        val user : UserDto =  iUserRepository.saveUser(userDto.copy(rol = Roles.USER))
+        return UserDtoResponse(user.dni,user.fullName,user.email,user.phone,user.password,user.rol)
     }
 
     override fun deleteUser(dni: String){

@@ -10,6 +10,7 @@ import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 import lombok.Getter
 import lombok.Setter
+import org.jetbrains.annotations.NotNull
 
 @Getter
 @Setter
@@ -18,7 +19,8 @@ import lombok.Setter
 data class UserEntity(
     @Id
     @Column(name ="cedula")
-    val dni:String?,
+    @NotNull
+    val dni:String,
     @Column(name = "nombre_completo")
     val fullName : String,
     @Column(name = "correo")
@@ -30,7 +32,7 @@ data class UserEntity(
     @Column(name = "rol")
     val rol : String,
     @OneToMany(mappedBy = "userEntity", orphanRemoval = true)
-    val petAnimalListRegister: List<PetAnimalEntity>,
+    val petAnimalListRegister: List<PetAnimalEntity>?,
     @OneToMany(mappedBy = "adoptedByUser", orphanRemoval = true)
-    val adoptedPets : List<AdoptionEntity>
+    val adoptedPets : List<AdoptionEntity>? ,
 )

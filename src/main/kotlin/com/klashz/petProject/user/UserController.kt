@@ -2,6 +2,7 @@ package com.klashz.petProject.user
 
 import com.klashz.petProject.dto.PetAnimalDto
 import com.klashz.petProject.dto.UserDto
+import com.klashz.petProject.dto.response.UserDtoResponse
 import com.klashz.petProject.user.interfaces.IUserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -13,7 +14,7 @@ class UserController(private val iUserService: IUserService) {
 
 
     @PostMapping
-    fun save(@RequestBody userDto: UserDto): ResponseEntity<UserDto> {
+    fun save(@RequestBody userDto: UserDto): ResponseEntity<UserDtoResponse> {
         val user = iUserService.saveUser(userDto)
         return ResponseEntity.status(HttpStatus.CREATED).body(user)
     }
