@@ -24,6 +24,10 @@ class AdoptionRepository(private val iAdoptionMapper: IAdoptionMapper,
         return iAdoptionMapper.toAdoptionDtoList(iAdoptionJpaRepository.findAll())
     }
 
+    override fun getAllAdoptionByUser(dni:String): List<AdoptionDto> {
+        return  iAdoptionMapper.toAdoptionDtoList(iAdoptionJpaRepository.findAllByAdoptedByUserId(dni))
+    }
+
     override fun saveAdoption(adoptionDto: AdoptionDto) : AdoptionDto {
         val adoptionEntity : AdoptionEntity = iAdoptionMapper.toAdoptionEntity(adoptionDto)
         return iAdoptionMapper.toAdoptionDto(iAdoptionJpaRepository.save(adoptionEntity))

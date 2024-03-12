@@ -10,7 +10,6 @@ import java.util.*
 data class PetAnimalDto(
     val id: UUID?,
     var name : String?,
-    @JsonIgnore
     val userId : String?,
     var age: String?,
     var raze : String?,

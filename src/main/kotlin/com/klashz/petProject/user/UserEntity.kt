@@ -18,7 +18,7 @@ import lombok.Setter
 data class UserEntity(
     @Id
     @Column(name ="cedula")
-    val dni:String,
+    val dni:String?,
     @Column(name = "nombre_completo")
     val fullName : String,
     @Column(name = "correo")
