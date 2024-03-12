@@ -1,11 +1,10 @@
 package com.klashz.petProject.pet
-
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.klashz.petProject.user.UserEntity
 import com.klashz.petProject.utils.Size
 import com.klashz.petProject.utils.Status
 import jakarta.persistence.*
-import java.util.*
+import java.util.UUID;
+
 @Entity
 @Table(name = "pet_animals")
 data class PetAnimalEntity(

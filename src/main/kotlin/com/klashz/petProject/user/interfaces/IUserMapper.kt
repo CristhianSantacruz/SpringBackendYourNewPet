@@ -15,7 +15,6 @@ interface IUserMapper {
     @Mapping(target = "phone", source = "phone")
     @Mapping(target = "password", source = "password")
     @Mapping(target = "rol", source = "rol")
-
     fun toUserDto(userEntity: UserEntity): UserDto
 
     @InheritInverseConfiguration
