@@ -18,32 +18,35 @@ import org.springframework.web.bind.annotation.RestController
 class AdoptionController(private val iAdoptionService: IAdoptionService) {
 
     @PostMapping
-    fun saveAdoption(@RequestBody adoptionDto: AdoptionDto): ResponseEntity<AdoptionResponseDto>  {
+    fun saveAdoption(@RequestBody adoptionDto: AdoptionDto): ResponseEntity<AdoptionResponseDto> {
         val adoptionSave = iAdoptionService.saveAdoption(adoptionDto)
         return ResponseEntity.status(HttpStatus.CREATED).body(adoptionSave)
     }
 
     @GetMapping("/{id}")
-    fun  getAdoptionById(@PathVariable id : Long) : ResponseEntity<AdoptionDto> {
+    fun getAdoptionById(@PathVariable id: Long): ResponseEntity<AdoptionDto> {
         return ResponseEntity.of(iAdoptionService.getAdoptionById(id))
     }
+
     @GetMapping
-    fun getAllAdoption() : ResponseEntity<List<AdoptionDto>> {
+    fun getAllAdoption(): ResponseEntity<List<AdoptionDto>> {
         return ResponseEntity.ok(iAdoptionService.getAllAdoption())
     }
+
     @GetMapping("/user/{dni}")
-    fun getAllAdoptionByUserId(@PathVariable dni : String ): ResponseEntity<List<AdoptionResponseDto>> {
+    fun getAllAdoptionByUserId(@PathVariable dni: String): ResponseEntity<List<AdoptionResponseDto>> {
         return ResponseEntity.ok(iAdoptionService.getAllAdoptionByUser(dni))
     }
+
     @DeleteMapping("/{id}")
     fun deletedAdoption(@PathVariable id: Long): ResponseEntity<String> {
-        val adoption = iAdoptionService.getAdoptionById(id)
-        return if (adoption.isPresent) {
-            iAdoptionService.deleteAdoption(id)
-            ResponseEntity.ok("Eliminado")
-        } else {
-            ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe")
+        val adoption = when {
+            iAdoptionService.getAdoptionById(id).isPresent -> ResponseEntity.ok("Eliminado")
+            else -> {
+                ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe")}
         }
+        iAdoptionService.deleteAdoption(id)
+        return adoption
     }
 }
 
