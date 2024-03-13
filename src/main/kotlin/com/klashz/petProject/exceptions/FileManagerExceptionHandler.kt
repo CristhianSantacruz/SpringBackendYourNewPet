@@ -27,10 +27,4 @@ class FileManagerExceptionHandler : ResponseEntityExceptionHandler() {
             .status(HttpStatus.BAD_REQUEST)
             .body("Solo se permite jpg y png")
     }
-    @ExceptionHandler(MaxUploadSizeExceededException::class)
-    fun handleFileNotFoundException(exc : MaxUploadSizeExceededException) : ResponseEntity<String> {
-        return ResponseEntity
-            .status(HttpStatus.EXPECTATION_FAILED)
-            .body("Excedio el peso ")
-    }
 }
