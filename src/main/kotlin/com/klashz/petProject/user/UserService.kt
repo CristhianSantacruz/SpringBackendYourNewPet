@@ -7,6 +7,7 @@ import com.klashz.petProject.exceptions.UserNotFoundException
 import com.klashz.petProject.security.Roles
 import com.klashz.petProject.user.interfaces.IUserRepository
 import com.klashz.petProject.user.interfaces.IUserService
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -37,7 +38,7 @@ class UserService(private val iUserRepository: IUserRepository) :IUserService {
             return Optional.of(iUserRepository.saveUser(userDto));
         }
     }
-
+    @Transactional
     override fun getAllUsers(): List<UserDto> {
        return iUserRepository.getAllUsers();
     }

@@ -1,6 +1,7 @@
 package com.klashz.petProject.pet
 
 import com.klashz.petProject.dto.PetAnimalDto
+import com.klashz.petProject.dto.response.PetAnimalDtoResponse
 import com.klashz.petProject.pet.interfaces.IPetService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

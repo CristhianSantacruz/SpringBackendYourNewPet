@@ -1,6 +1,7 @@
 package com.klashz.petProject.pet
 
 import com.klashz.petProject.dto.PetAnimalDto
+import com.klashz.petProject.dto.response.PetAnimalDtoResponse
 import com.klashz.petProject.pet.interfaces.IPetRepository
 import com.klashz.petProject.pet.interfaces.IPetService
 import com.klashz.petProject.utils.Status
@@ -14,7 +15,8 @@ class PetService(private val iPetRepository: IPetRepository) : IPetService{
     }
 
     override fun getAllPet(): List<PetAnimalDto> {
-        return iPetRepository.getAllPet()
+       return  iPetRepository.getAllPet()
+
     }
 
     override fun savePet(petAnimalDto: PetAnimalDto): PetAnimalDto {

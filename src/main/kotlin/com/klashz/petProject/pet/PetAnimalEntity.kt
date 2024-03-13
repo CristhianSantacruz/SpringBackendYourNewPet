@@ -1,5 +1,6 @@
 package com.klashz.petProject.pet
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.klashz.petProject.fileImage.FileEntity
 import com.klashz.petProject.user.UserEntity
 import com.klashz.petProject.utils.Size
 import com.klashz.petProject.utils.Status
@@ -37,5 +38,7 @@ data class PetAnimalEntity(
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    val userEntity: UserEntity?
+    val userEntity: UserEntity?,
+    @OneToOne(mappedBy = "petAnimal", orphanRemoval = true)
+    val imageForPet : FileEntity?
 )

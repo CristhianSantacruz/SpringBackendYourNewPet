@@ -15,9 +15,9 @@ interface IFileMapper {
     @Mapping(target = "name", source = "name")
     @Mapping(target = "type", source = "type")
     @Mapping(target = "data", source = "data")
+    @Mapping(target = "petAnimal", source = "petAnimal")
     fun toFileDto(fileEntity: FileEntity): FileDto
     @InheritInverseConfiguration
     fun toFileEntity(fileDto: FileDto): FileEntity
-
     fun toFileDtoList(fileEntityList: List<FileEntity>) : List<FileDto>
 }

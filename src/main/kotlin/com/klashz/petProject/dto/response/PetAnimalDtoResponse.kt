@@ -1,11 +1,12 @@
-package com.klashz.petProject.dto
+package com.klashz.petProject.dto.response
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.klashz.petProject.fileImage.FileEntity
 import com.klashz.petProject.utils.Size
 import com.klashz.petProject.utils.Status
 import java.util.*
-data class PetAnimalDto(
+
+data class PetAnimalDtoResponse(
+
     val id: UUID?,
     var name : String?,
     val userId : String?,
@@ -17,6 +18,7 @@ data class PetAnimalDto(
     var petType: String?,
     var imagePathUrl : String?,
     val contactPet : String,
-    val imageForPet: FileEntity?
+    val uriImage: String?
 
 )
+

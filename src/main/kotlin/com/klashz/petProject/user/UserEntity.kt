@@ -8,6 +8,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
+import jakarta.transaction.Transactional
 import lombok.Getter
 import lombok.Setter
 import org.jetbrains.annotations.NotNull

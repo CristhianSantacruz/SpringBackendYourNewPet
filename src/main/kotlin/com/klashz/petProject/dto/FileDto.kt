@@ -1,6 +1,8 @@
 package com.klashz.petProject.dto
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.klashz.petProject.pet.PetAnimalEntity
 import jakarta.persistence.Lob
 import lombok.Builder
 import java.util.*
@@ -10,7 +12,9 @@ data class FileDto(
     val name : String?,
     val type : String?,
     @Lob
-    val data : ByteArray?
+    val data : ByteArray?,
+    @JsonIgnore
+    val petAnimal:PetAnimalDto?
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

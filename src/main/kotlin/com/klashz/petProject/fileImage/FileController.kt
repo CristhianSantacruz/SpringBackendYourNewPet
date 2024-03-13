@@ -3,12 +3,14 @@ package com.klashz.petProject.fileImage
 import com.klashz.petProject.dto.FileDto
 import com.klashz.petProject.dto.response.ResponseFileDto
 import com.klashz.petProject.fileImage.interfaces.IFileService
+import org.apache.coyote.Response
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -19,9 +21,9 @@ import java.util.*
 @RequestMapping("/file")
 class FileController(val iFileService: IFileService) {
 
-    @PostMapping("/upload")
-    fun uploadFile(@RequestParam("file") file: MultipartFile): ResponseEntity<String> {
-        iFileService.store(file)
+    @PostMapping("/upload/{id}")
+    fun uploadFile(@RequestParam("file") file: MultipartFile,@PathVariable id: UUID): ResponseEntity<String> {
+        iFileService.store(file,id)
         return ResponseEntity.ok("Archivo Subido Correctamente")
     }
     @GetMapping("/{id}")
@@ -37,6 +39,10 @@ class FileController(val iFileService: IFileService) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build()
         }
 
+    }
+    @GetMapping("/image/{id}")
+    fun getImageFile(@PathVariable id : UUID) : ResponseEntity<String> {
+        return ResponseEntity.ok(iFileService.getUriImageById(id))
     }
 
     @GetMapping

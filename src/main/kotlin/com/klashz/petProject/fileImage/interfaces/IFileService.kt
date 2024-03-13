@@ -9,7 +9,8 @@ import kotlin.jvm.Throws
 
 interface IFileService {
 
-    fun store(file:MultipartFile): FileDto
+    fun store(file:MultipartFile,idPet:UUID): FileDto
     fun getFile(id: UUID) : Optional<FileDto>
     fun getStores() : List<ResponseFileDto>
+    fun getUriImageById(idFile : UUID) : String
 }
