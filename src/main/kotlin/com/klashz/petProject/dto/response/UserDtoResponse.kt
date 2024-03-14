@@ -8,7 +8,6 @@ data class UserDtoResponse(
     val fullName : String,
     val email : String,
     val phone : String,
-    val password : String,
     val rol : String?,
 ) {
 

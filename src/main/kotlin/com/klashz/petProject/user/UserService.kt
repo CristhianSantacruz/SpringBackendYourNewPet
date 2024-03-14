@@ -8,11 +8,13 @@ import com.klashz.petProject.security.Roles
 import com.klashz.petProject.user.interfaces.IUserRepository
 import com.klashz.petProject.user.interfaces.IUserService
 import jakarta.transaction.Transactional
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class UserService(private val iUserRepository: IUserRepository) :IUserService {
+class UserService(private val iUserRepository: IUserRepository,
+    private val passwordEncoder: PasswordEncoder) :IUserService {
 
     @Transactional
     override fun getUserById(dni: String): Optional<UserDto> {
@@ -34,10 +36,11 @@ class UserService(private val iUserRepository: IUserRepository) :IUserService {
     }
     @Transactional
     override fun updateUser(userDto: UserDto): Optional<UserDto> {
-        if(iUserRepository.getUserById(userDto.dni).isEmpty) {
-            return Optional.empty();
+        return if(iUserRepository.getUserById(userDto.dni).isEmpty) {
+            Optional.empty();
         }else {
-            return Optional.of(iUserRepository.saveUser(userDto));
+            val passwordUser : String = userDto.password
+            Optional.of(iUserRepository.saveUser(userDto.copy(password = passwordEncoder.encode(passwordUser))));
         }
     }
     @Transactional
@@ -46,8 +49,9 @@ class UserService(private val iUserRepository: IUserRepository) :IUserService {
     }
 
     override fun saveUser(userDto: UserDto): UserDtoResponse {
-        val user : UserDto =  iUserRepository.saveUser(userDto.copy(rol = Roles.USER))
-        return UserDtoResponse(user.dni,user.fullName,user.email,user.phone,user.password,user.rol)
+        val user : UserDto =  iUserRepository.saveUser(userDto.copy(rol = Roles.USER, password = passwordEncoder.encode(userDto.password)))
+        println("USER QUE SE GUARDA CON CONTRASENIA ENCRYPTADA $user")
+        return UserDtoResponse(user.dni,user.fullName,user.email,user.phone,user.rol)
     }
 
     override fun deleteUser(dni: String){

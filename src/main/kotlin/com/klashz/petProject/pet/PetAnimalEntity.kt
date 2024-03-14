@@ -41,4 +41,11 @@ data class PetAnimalEntity(
     val userEntity: UserEntity?,
     @OneToOne(mappedBy = "petAnimal", orphanRemoval = true)
     val imageForPet : FileEntity?
-)
+
+){
+    override fun toString(): String {
+        return "PetAnimalEntity(id=$id, name=$name, age=$age, raze=$raze, size=$size, status=$status, petType=$petType, description=$description, imagePathUrl=$imagePathUrl, contactPet=$contactPet)"
+    }
+
+}
+

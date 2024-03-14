@@ -28,7 +28,7 @@ data class UserEntity(
     val password : String,
     @Column(name = "rol")
     val rol : String,
-    @OneToMany(mappedBy = "userEntity", orphanRemoval = true)
+    @OneToMany(mappedBy = "userEntity", cascade = [CascadeType.REFRESH])
     val petAnimalListRegister: List<PetAnimalEntity>?,
     @OneToMany(mappedBy = "adoptedByUser", cascade = [CascadeType.REMOVE])
     val adoptedPets : List<AdoptionEntity>? ,
