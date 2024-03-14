@@ -13,10 +13,12 @@ import java.util.*
 
 @Service
 class UserService(private val iUserRepository: IUserRepository) :IUserService {
+
+    @Transactional
     override fun getUserById(dni: String): Optional<UserDto> {
         return iUserRepository.getUserById(dni);
     }
-
+    @Transactional
     override fun getUserByEmail(email: String): Optional<UserDto> {
         return iUserRepository.getUserByEmail(email);
     }
@@ -30,7 +32,7 @@ class UserService(private val iUserRepository: IUserRepository) :IUserService {
             throw UserNotFoundException(dni)
         }
     }
-
+    @Transactional
     override fun updateUser(userDto: UserDto): Optional<UserDto> {
         if(iUserRepository.getUserById(userDto.dni).isEmpty) {
             return Optional.empty();

@@ -3,11 +3,7 @@ package com.klashz.petProject.user
 import com.klashz.petProject.adoption.AdoptionEntity
 import com.klashz.petProject.dto.AdoptionDto
 import com.klashz.petProject.pet.PetAnimalEntity
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
-import jakarta.persistence.OneToMany
-import jakarta.persistence.Table
+import jakarta.persistence.*
 import jakarta.transaction.Transactional
 import lombok.Getter
 import lombok.Setter
@@ -34,6 +30,6 @@ data class UserEntity(
     val rol : String,
     @OneToMany(mappedBy = "userEntity", orphanRemoval = true)
     val petAnimalListRegister: List<PetAnimalEntity>?,
-    @OneToMany(mappedBy = "adoptedByUser", orphanRemoval = true)
+    @OneToMany(mappedBy = "adoptedByUser", cascade = [CascadeType.REMOVE])
     val adoptedPets : List<AdoptionEntity>? ,
 )
