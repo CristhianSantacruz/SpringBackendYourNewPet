@@ -13,7 +13,7 @@ import java.util.*
 class PetController(private val iPetService: IPetService) {
 
   @GetMapping()
-  fun getAll() : ResponseEntity<List<PetAnimalDto>> {
+  fun getAll() : ResponseEntity<List<PetAnimalDtoResponse>> {
       return ResponseEntity.ok(iPetService.getAllPet())
   }
   @GetMapping("/{id}")

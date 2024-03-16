@@ -8,7 +8,6 @@ import org.mapstruct.Mapping
 
 @Mapper(componentModel = "spring",injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 interface IPetMapper {
-
     fun toPetDto(petAnimalEntity: PetAnimalEntity) : PetAnimalDto;
 
     @Mapping(target = "userEntity", ignore = true)

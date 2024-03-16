@@ -12,7 +12,7 @@ import org.springframework.web.filter.OncePerRequestFilter
 class JwtAuthFilter(private val jwtAuthenticationProvider: JwtAuthenticationProvider) :
     OncePerRequestFilter() {
 
-    private val urlsToSkip = listOf("/auth")
+    private val urlsToSkip = listOf("/auth","/file","/user")
 
 
     @Throws(ServletException::class)
@@ -40,11 +40,6 @@ class JwtAuthFilter(private val jwtAuthenticationProvider: JwtAuthenticationProv
         try {
             val auth = jwtAuthenticationProvider.validateToken(authElements[1])
             SecurityContextHolder.getContext().authentication = auth
-
-            println("voy a imprimir el context")
-            //println(SecurityContextHolder.getContext())
-            println("voy a imprimir la autenticacion")
-           // println(SecurityContextHolder.getContext().authentication)
         } catch (e: RuntimeException) {
             SecurityContextHolder.clearContext()
             println("se estalló")

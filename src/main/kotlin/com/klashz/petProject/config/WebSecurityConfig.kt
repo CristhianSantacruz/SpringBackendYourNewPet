@@ -47,21 +47,18 @@ class WebSecurityConfig(
             .authorizeHttpRequests { requests ->
                 requests
                     .requestMatchers(
-                        "/auth/**",
+                        "/auth/**","/file/**"
                     ).permitAll()
                     .requestMatchers(HttpMethod.DELETE, "/user/**").hasRole(Roles.ADMIN)
                     .requestMatchers(HttpMethod.DELETE, "/pet/**").hasRole(Roles.ADMIN)
                     .requestMatchers(HttpMethod.DELETE, "/adopt/**").hasRole(Roles.ADMIN)
                     .requestMatchers(HttpMethod.DELETE, "/file/**").hasRole(Roles.ADMIN)
-                    .requestMatchers(HttpMethod.DELETE, "/pet/**").hasRole(Roles.ADMIN)
                     .requestMatchers(HttpMethod.GET, "/pet/**").hasAnyRole(Roles.USER, Roles.ADMIN)
                     .requestMatchers(HttpMethod.POST, "/pet/**").hasAnyRole(Roles.USER, Roles.ADMIN)
                     .requestMatchers(HttpMethod.PUT, "/pet/**").hasAnyRole(Roles.USER, Roles.ADMIN)
-                    .requestMatchers(HttpMethod.GET, "/user/**").hasAnyRole(Roles.USER, Roles.ADMIN)
+                    .requestMatchers(HttpMethod.GET, "/user/**").permitAll()
                     .requestMatchers(HttpMethod.POST, "/user/**").hasAnyRole(Roles.USER, Roles.ADMIN)
                     .requestMatchers(HttpMethod.PUT,"/user/**").hasAnyRole(Roles.USER,Roles.ADMIN)
-                    .requestMatchers(HttpMethod.GET, "/file/**").hasAnyRole(Roles.USER, Roles.ADMIN)
-                    .requestMatchers(HttpMethod.POST, "/file/**").hasAnyRole(Roles.USER, Roles.ADMIN)
                     .requestMatchers(HttpMethod.GET, "/adopt/**").hasAnyRole(Roles.USER, Roles.ADMIN)
                     .requestMatchers(HttpMethod.POST, "/adopt/**").hasAnyRole(Roles.USER, Roles.ADMIN)
 
@@ -74,8 +71,6 @@ class WebSecurityConfig(
 
         return http.build()
     }
-
-
     @Bean
     fun corsConfigurationSource(): CorsConfigurationSource {
         val configuration: CorsConfiguration = CorsConfiguration()

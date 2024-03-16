@@ -18,7 +18,9 @@ data class PetAnimalDtoResponse(
     var petType: String?,
     var imagePathUrl : String?,
     val contactPet : String,
-    val uriImage: String?
+    val imageForPet: FileEntity?,
+    val userName : String?,
+    val userEmail : String?,
 
 )
 

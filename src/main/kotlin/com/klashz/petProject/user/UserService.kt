@@ -24,7 +24,7 @@ class UserService(private val iUserRepository: IUserRepository,
     override fun getUserByEmail(email: String): Optional<UserDto> {
         return iUserRepository.getUserByEmail(email);
     }
-
+    @Transactional
     override fun getPetsByUser(dni: String): List<PetAnimalDto>? {
         val userDtoOptional: Optional<UserDto> = iUserRepository.getUserById(dni)
         if (userDtoOptional.isPresent) {
