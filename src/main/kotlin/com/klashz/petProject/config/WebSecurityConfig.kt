@@ -60,6 +60,7 @@ class WebSecurityConfig(
                     .requestMatchers(HttpMethod.POST, "/user/**").hasAnyRole(Roles.USER, Roles.ADMIN)
                     .requestMatchers(HttpMethod.PUT,"/user/**").hasAnyRole(Roles.USER,Roles.ADMIN)
                     .requestMatchers(HttpMethod.GET, "/adopt/**").hasAnyRole(Roles.USER, Roles.ADMIN)
+                    .requestMatchers(HttpMethod.GET,"/adopt/user/**").hasAnyRole(Roles.USER,Roles.ADMIN)
                     .requestMatchers(HttpMethod.POST, "/adopt/**").hasAnyRole(Roles.USER, Roles.ADMIN)
 
                     .anyRequest().authenticated()

@@ -23,18 +23,20 @@ class AdoptionController(private val iAdoptionService: IAdoptionService) {
         return ResponseEntity.status(HttpStatus.CREATED).body(adoptionSave)
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     fun getAdoptionById(@PathVariable id: Long): ResponseEntity<AdoptionDto> {
         return ResponseEntity.of(iAdoptionService.getAdoptionById(id))
     }
 
     @GetMapping
     fun getAllAdoption(): ResponseEntity<List<AdoptionDto>> {
+        println("ESTAMOS LLAMANDO A TODOS ")
         return ResponseEntity.ok(iAdoptionService.getAllAdoption())
     }
 
-    @GetMapping("/user/{dni}")
+    @GetMapping("/{dni}")
     fun getAllAdoptionByUserId(@PathVariable dni: String): ResponseEntity<List<AdoptionResponseDto>> {
+        println("ESTAMOS EN ESTE ENDPOINT")
         return ResponseEntity.ok(iAdoptionService.getAllAdoptionByUser(dni))
     }
 

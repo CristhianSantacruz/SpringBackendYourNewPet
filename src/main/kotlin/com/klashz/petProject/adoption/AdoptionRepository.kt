@@ -4,6 +4,7 @@ import com.klashz.petProject.adoption.interfaces.IAdoptionJpaRepository
 import com.klashz.petProject.adoption.interfaces.IAdoptionMapper
 import com.klashz.petProject.adoption.interfaces.IAdoptionRepository
 import com.klashz.petProject.dto.AdoptionDto
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Repository
 import java.util.*
 
@@ -23,7 +24,7 @@ class AdoptionRepository(private val iAdoptionMapper: IAdoptionMapper,
     override fun getAllAdoption(): List<AdoptionDto> {
         return iAdoptionMapper.toAdoptionDtoList(iAdoptionJpaRepository.findAll())
     }
-
+    @Transactional
     override fun getAllAdoptionByUser(dni:String): List<AdoptionDto> {
         return  iAdoptionMapper.toAdoptionDtoList(iAdoptionJpaRepository.findAllByAdoptedByUserId(dni))
     }
