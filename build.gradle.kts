@@ -17,6 +17,7 @@ java {
 }
 
 
+
 configurations {
     compileOnly {
         extendsFrom(configurations.annotationProcessor.get())
@@ -47,6 +48,9 @@ dependencies {
 
 }
 
+tasks.bootJar {
+    archiveFileName.set("SpringBootAdoptedPaw.jar")
+}
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs += "-Xjsr305=strict"
