@@ -3,6 +3,7 @@ package com.klashz.petProject.adoption
 import com.klashz.petProject.adoption.interfaces.IAdoptionService
 import com.klashz.petProject.dto.AdoptionDto
 import com.klashz.petProject.dto.response.AdoptionResponseDto
+import com.klashz.petProject.dto.response.AdoptionResponseDto2
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -29,7 +30,7 @@ class AdoptionController(private val iAdoptionService: IAdoptionService) {
     }
 
     @GetMapping
-    fun getAllAdoption(): ResponseEntity<List<AdoptionDto>> {
+    fun getAllAdoption(): ResponseEntity<List<AdoptionResponseDto2>> {
         println("ESTAMOS LLAMANDO A TODOS ")
         return ResponseEntity.ok(iAdoptionService.getAllAdoption())
     }
