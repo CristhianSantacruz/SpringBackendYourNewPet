@@ -31,13 +31,11 @@ class AdoptionController(private val iAdoptionService: IAdoptionService) {
 
     @GetMapping
     fun getAllAdoption(): ResponseEntity<List<AdoptionResponseDto2>> {
-        println("ESTAMOS LLAMANDO A TODOS ")
         return ResponseEntity.ok(iAdoptionService.getAllAdoption())
     }
 
     @GetMapping("/{dni}")
     fun getAllAdoptionByUserId(@PathVariable dni: String): ResponseEntity<List<AdoptionResponseDto>> {
-        println("ESTAMOS EN ESTE ENDPOINT")
         return ResponseEntity.ok(iAdoptionService.getAllAdoptionByUser(dni))
     }
 
